@@ -1,3 +1,4 @@
+//global variables
 var city = {
     lat: 1,
     long: 1
@@ -6,10 +7,6 @@ var city = {
 var citySearch;
 var locationArray = [];
 var videoId;
-
-$().ready(function () {
-    youtubeSearch("cats");
-});
 
 //City objects
 var shanghai = {
@@ -67,11 +64,12 @@ function setRandomLocation() {
     citySearch = locationArray[Math.floor(Math.random() * locationArray.length)];
 }
 
-//Searches Youtube by keyword and chooses a random location
-function youtubeSearch (searchTerm){
+//Searches Youtube by keyword, chooses a random location, plays the video
+function playRandomVideo (searchTerm){
     //set random location
     setRandomLocation();
 
+    //youtube parameters
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     var q = "&q=" + searchTerm;
     var locationQ = "&location=" + citySearch.lat + "," + citySearch.lng;
@@ -89,54 +87,53 @@ function youtubeSearch (searchTerm){
 
     //response
         .done(function (response) {
-            //console.log(response);
-            console.log("item 1", response.items[0].snippet);
-
             videoId = response.items[0].id.videoId;
-
+            console.log("response", videoId);
             getVideoDetails(videoId);
+            player.loadVideoById(videoId, 0, 60);
         })
 }
 
+//This function gets the coordinates of the video
 function getVideoDetails(id) {
 
     var videoQuery = "https://www.googleapis.com/youtube/v3/videos?part=snippet,recordingDetails&id=" + id + "&key=AIzaSyCTNUZm5iZT1W_OICKJCKFqFWrLr3bZNjM";
 
+    //call to get video info
     $.ajax({
         url: videoQuery,
         method: "GET"
     })
 
+        //sets location data from youtube
         .done(function (response){
             city.lat = response.items[0].recordingDetails.location.latitude;
             city.lng = response.items[0].recordingDetails.location.longitude;
         });
-
-    //playVideo(videoId);
 }
 
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+function loadPlayer() {
 
-var player;
-function onYouTubeIframeAPIReady(){
-
-    player = new YT.Player('player', {
-        width: '640',
-        height: '390',
-        videoId: videoId,
-        playerVars: {'autoplay': 1, 'controls': 0, 'showinfo': 0},
-        events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-        }
-    });
-}
-
-function onPlayerReady() {
-    //onYouTubeIframAPIReady()
+    $.getScript("https://www.youtube.com/iframe_api").fail(function () {
+        $('#video').html("Unable to play video");
+        console.log("error");
+    })
+        .done(function () {
+            window.onYouTubeIframeAPIReady = function () {
+                player = new YT.Player('player', {
+                    width: '640',
+                    height: '390',
+                    videoId: "NpEaa2P7qZI",
+                    playerVars: {'autoplay': 1, 'controls': 0, 'showinfo': 0, "end": 60},
+                    events: {
+                        'onReady': function () {
+                            console.log("player ready");
+                        },
+                        'onStateChange': onPlayerStateChange
+                    }
+                })
+            }
+        });
 }
 
 function onPlayerStateChange(event) {
