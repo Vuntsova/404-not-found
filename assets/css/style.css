@@ -1,0 +1,100 @@
+
+body{
+	background: url("../images/bg.jpg") no-repeat center center fixed;
+	display: block;
+	max-width: 100%;
+	height: auto;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	margin-top: 0%;
+}
+/* Positioning the logo (heart) */
+.centered {
+  position: absolute; /* or absolute */
+  top: 35%;
+  left: 42%;
+
+}
+/*Positioioning the */
+.centered2 {
+  position: absolute; /* or absolute */
+  top: 57%;
+  left: 42%;
+}
+.centered3 {
+  position: absolute; /* or absolute */
+  top: 65%;
+  left: 41.3%;
+  width: 250px;
+}
+.btn-danger{
+	background-color: #b71418;
+}
+.container-fluid{
+	background-color: #222222;
+	opacity: 0.8;
+} 
+
+/*LOGIN form*/
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+}
+#login-dp .help-block{
+    font-size:12px    
+}
+#login-dp .bottom{
+    background-color:rgba(255,255,255,.8);
+    border-top:1px solid #ddd;
+    clear:both;
+    padding:14px;
+}
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
+/*END login form*/
+/*Nav Bar Font Colors and Hover*/
+.navbar-text 
+{
+	color: #b71418;
+}
+.dropdown-toggle{
+	color: #b71418;
+}
+.dropdown-toggle:hover{
+	color: #b71418;
+}
+/* END Nav Bar Font Colors and Hover*/
+
+
+
+
+
+
+
