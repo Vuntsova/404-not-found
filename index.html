@@ -20,20 +20,19 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        
         <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown"><b>CATEGORIES</b><span class="caret"></span></a>
+          <a class="dropdown-toggle sound" data-toggle="dropdown"><b>CATEGORIES</b><span class="caret"></span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="#">
-	            	<div class="checkbox">
+	            	<div class="sound" class="checkbox">
 	            		<label>
-							<input class="hey" type="checkbox"> Fashion
+							<input type="checkbox"> Fashion
 						</label>
 					</div>
 				</a>
 			</li>
             <li><a href="#">
-	            	<div class="checkbox">
+	            	<div class="sound" class="checkbox">
 	            		<label>
 							<input type="checkbox"> Animals
 						</label>
@@ -41,7 +40,7 @@
 				</a>
 			</li>
             <li><a href="#">
-	            	<div class="checkbox">
+	            	<div class="sound" class="checkbox">
 	            		<label>
 							<input type="checkbox"> Funny
 						</label>
@@ -49,7 +48,7 @@
 				</a>
 			</li>
             <li><a href="#">
-	            	<div class="checkbox">
+	            	<div class="sound" class="checkbox">
 	            		<label>
 							<input type="checkbox"> All of them
 						</label>
@@ -63,12 +62,12 @@
         <div class="form-group">
           <input type="text" class="form-control" placeholder="USERNAME">
         </div>
-        <button type="submit" class="btn btn-danger"><b>PLAY NOW</b></button>
+        <button type="submit" class="btn btn-danger sound"><b>PLAY NOW</b></button>
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text"><b>Already have an account?</b></p></li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>LOGIN</b> <span class="caret"></span></a>
+          <a href="#" class="dropdown-toggle sound" data-toggle="dropdown"><b>LOGIN</b> <span class="caret"></span></a>
 			<ul id="login-dp" class="dropdown-menu">
 				<li>
 					 <div class="row">
@@ -90,7 +89,7 @@
                                              <div class="help-block text-right"><a href="">Forget the password ?</a></div>
 										</div>
 										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+											 <button type="submit" class="btn btn-primary btn-block sound">Sign in</button>
 										</div>
 										<div class="checkbox">
 											 <label>
@@ -118,6 +117,17 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- FireBase -->
 <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
-
+<!-- Sound Effects -->
+<audio id="beep" preload="auto">
+<source src="assets/audio/sound.mp3"></source>
+This browser does not support the HTML5 audio tag.
+</audio>	
+<script>
+var soundEngaged = $("#beep")[0];
+$(".sound")
+.mouseenter(function() {
+soundEngaged.play();
+});
+</script>
 </body>
 </html>
