@@ -9,7 +9,7 @@ $().ready(function () {
 
 var shanghai = {
         lat: 31.230416,
-        long: 121.473701
+        lng: 121.473701
     },
 
     karachi = {
@@ -116,12 +116,19 @@ var marker;
 var randomMarker;
 var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
 
+//Model box
+// Get the modal
+var modal = document.getElementById('myModal');
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
 function initMap() {
 
     var map = new google.maps.Map(document.getElementById('map'), {
         //Zooms in or out on the map
-        zoom: 2,
+        zoom: 1,
         //Displays map starting at certain location
         center: startDisp,
          styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
@@ -164,7 +171,40 @@ function initMap() {
             strokeWeight: 3,
             map: map
         });
+
+
+        //Model Box
+        //========================================================
+        // When the user clicks on the button, open the modal 
+            var latInfo = city.lat;
+            var longInfo = city.lng;
+            $.ajax({
+                url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
+                method: 'GET'
+            }).done(function(response){
+                $('.modelText').html('The area is ' + response['results'][0]['formatted_address'] +
+                                      'and you were ' + Math.round(distance) + ' miles off');
+                //Testing
+                console.log('The area is ' + response['results'][0]['formatted_address']);
+            });
+            modal.style.display = "block";
+
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+            nextQuestion();
+        }
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                nextQuestion();
+            }
+        }
     });
+
+            
 }
 //Function to create marker
 function placeMarkerAndPanTo(latLng, map) {
@@ -173,3 +213,11 @@ function placeMarkerAndPanTo(latLng, map) {
         map: map
     });
 }
+function nextQuestion(){
+    city = locationArray[Math.floor(Math.random() * locationArray.length)];
+    initMap();
+}
+
+
+
+
