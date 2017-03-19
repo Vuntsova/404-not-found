@@ -1,12 +1,17 @@
+var city = {
+    lat: 1,
+    long: 1
+};
 
-var city;
+var citySearch;
 var locationArray = [];
+var videoId;
 
 $().ready(function () {
-    youtubeSearch("wrestling");
+    youtubeSearch("cats");
 });
 
-
+//City objects
 var shanghai = {
         lat: 31.230416,
         long: 121.473701
@@ -57,17 +62,19 @@ var shanghai = {
 
 locationArray = [shanghai, karachi, delhi, bucharest, lagos, tokyo, bogota, riyadh, wellington, sophia, orlando];
 
+//Chooses a random city
 function setRandomLocation() {
-    city = locationArray[Math.floor(Math.random() * locationArray.length)];
+    citySearch = locationArray[Math.floor(Math.random() * locationArray.length)];
 }
 
+//Searches Youtube by keyword and chooses a random location
 function youtubeSearch (searchTerm){
     //set random location
     setRandomLocation();
 
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     var q = "&q=" + searchTerm;
-    var locationQ = "&location=" + city.lat + "," + city.lng;
+    var locationQ = "&location=" + citySearch.lat + "," + citySearch.lng;
     var locationRadius = "&locationRadius=100mi";
     var embeddable="&videoEmbeddable=true";
     var type = "&type=video";
@@ -85,7 +92,7 @@ function youtubeSearch (searchTerm){
             //console.log(response);
             console.log("item 1", response.items[0].snippet);
 
-            var videoId = response.items[0].id.videoId;
+            videoId = response.items[0].id.videoId;
 
             getVideoDetails(videoId);
         })
@@ -101,10 +108,42 @@ function getVideoDetails(id) {
     })
 
         .done(function (response){
+            city.lat = response.items[0].recordingDetails.location.latitude;
+            city.lng = response.items[0].recordingDetails.location.longitude;
+        });
 
-            console.log(response);
-            //location = response.
-        })
+    //playVideo(videoId);
+}
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+var player;
+function onYouTubeIframeAPIReady(){
+
+    player = new YT.Player('player', {
+        width: '640',
+        height: '390',
+        videoId: videoId,
+        playerVars: {'autoplay': 1, 'controls': 0, 'showinfo': 0},
+        events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+        }
+    });
+}
+
+function onPlayerReady() {
+    //onYouTubeIframAPIReady()
+}
+
+function onPlayerStateChange(event) {
+    if(event.data == YT.PlayerState.ENDED) {
+        player.destroy();
+        $('#head').css({"background-color":"#aaa"});
+    }
 }
 
 //Where the map is viewed when page loads 
