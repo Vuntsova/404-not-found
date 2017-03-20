@@ -1,12 +1,14 @@
+//global variables
+var city = {
+    lat: 1,
+    lng: 1
+};
 
-var city;
+var citySearch;
 var locationArray = [];
+var videoId;
 
-$().ready(function () {
-    youtubeSearch("wrestling");
-});
-
-
+//City objects
 var shanghai = {
         lat: 31.230416,
         lng: 121.473701
@@ -57,17 +59,20 @@ var shanghai = {
 
 locationArray = [shanghai, karachi, delhi, bucharest, lagos, tokyo, bogota, riyadh, wellington, sophia, orlando];
 
+//Chooses a random city
 function setRandomLocation() {
-    city = locationArray[Math.floor(Math.random() * locationArray.length)];
+    citySearch = locationArray[Math.floor(Math.random() * locationArray.length)];
 }
 
-function youtubeSearch (searchTerm){
+//Searches Youtube by keyword, chooses a random location, plays the video
+function playRandomVideo (searchTerm){
     //set random location
     setRandomLocation();
 
+    //youtube parameters
     var url = "https://www.googleapis.com/youtube/v3/search?part=snippet";
     var q = "&q=" + searchTerm;
-    var locationQ = "&location=" + city.lat + "," + city.lng;
+    var locationQ = "&location=" + citySearch.lat + "," + citySearch.lng;
     var locationRadius = "&locationRadius=100mi";
     var embeddable="&videoEmbeddable=true";
     var type = "&type=video";
@@ -82,30 +87,64 @@ function youtubeSearch (searchTerm){
 
     //response
         .done(function (response) {
-            //console.log(response);
-            console.log("item 1", response.items[0].snippet);
-
-            var videoId = response.items[0].id.videoId;
-
-            getVideoDetails(videoId);
+            videoId = response.items[0].id.videoId;
+            console.log("response", videoId);
+            getVideoDetails(videoId);           
+            player.loadVideoById(videoId, 0, 60);
         })
 }
 
+//This function gets the coordinates of the video
 function getVideoDetails(id) {
 
     var videoQuery = "https://www.googleapis.com/youtube/v3/videos?part=snippet,recordingDetails&id=" + id + "&key=AIzaSyCTNUZm5iZT1W_OICKJCKFqFWrLr3bZNjM";
 
+    //call to get video info
     $.ajax({
         url: videoQuery,
         method: "GET"
     })
 
+        //sets location data from youtube
         .done(function (response){
-
-            console.log(response);
-            //location = response.
-        })
+            city.lat = response.items[0].recordingDetails.location.latitude;
+            city.lng = response.items[0].recordingDetails.location.longitude;
+        });
 }
+
+function loadPlayer() {
+
+    $.getScript("https://www.youtube.com/iframe_api").fail(function () {
+        $('#video').html("Unable to play video");
+        console.log("error");
+    })
+        .done(function () {
+            window.onYouTubeIframeAPIReady = function () {
+                player = new YT.Player('player', {
+                    width: '640',
+                    height: '390',
+                    videoId: "NpEaa2P7qZI",
+                    playerVars: {'autoplay': 1, 'controls': 0, 'showinfo': 0, "end": 60},
+                    events: {
+                        'onReady': function () {
+                            console.log("player ready");
+                        },
+                        'onStateChange': onPlayerStateChange
+                    }
+                })
+            }
+        });
+}
+
+function onPlayerStateChange(event) {
+    if(event.data == YT.PlayerState.ENDED) {
+        player.destroy();
+        $('#head').css({"background-color":"#aaa"});
+    }
+}
+
+loadPlayer();
+setTimeout(function(){ playRandomVideo(); }, 2000);
 
 //Where the map is viewed when page loads 
 var startDisp = {lat: 0, lng: 0};
@@ -120,8 +159,7 @@ var options1 = {
         center: startDisp,
         styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
     };
-//Model box
-//===========================
+
 //Counts the number of questions 
 function initMap() {
     //Displays initial map
@@ -172,11 +210,14 @@ function initMap() {
         // When the user clicks on the button, open the modal 
             var latInfo = city.lat;
             var longInfo = city.lng;
+            console.log('randomLat' + latInfo);
+            console.log('randomLong' + longInfo);
             $.ajax({
-                url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
+                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
                 method: 'GET'
             })
             .done(function(response){
+                console.log(response);
                 //Displays infobox above random marker
                 var contentString = 'The area is ' + response['results'][0]['formatted_address'] +
                                           ' and you were ' + Math.round(distance) + ' miles off' + 
