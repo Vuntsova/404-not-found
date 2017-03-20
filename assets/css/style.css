@@ -161,16 +161,18 @@ body{
   margin-bottom: 0rem;  border-radius: 0px;
   background-color: #302e2f;
 }
+/*Make changes for height: 271px; and width: 100% */
 #player{
-  height: 250px; 
-  width: 92%; 
+  height: 271px; 
+  width: 100%; 
   background-color: #ccc;
   border:15px solid #9a2b25;
   border-radius: 15px;
 }
+/*Make changes for height: 271px; and width: 100% */
 #map{
-  height: 250px; 
-  width: 92%; 
+  height: 271px; 
+  width: 100%; 
   background-color: #ccc;
   border:15px solid #9a2b25;
   border-radius: 15px;
