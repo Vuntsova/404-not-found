@@ -18,7 +18,7 @@ if (typeof jQuery === 'undefined') {
 
 /* ========================================================================
  * Bootstrap: transition.js v3.3.7
- * http://getbootstrap.com/javascript/#transitions
+ * https://getbootstrap.com/javascript/#transitions
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -50,7 +50,7 @@ if (typeof jQuery === 'undefined') {
     return false // explicit for ie8 (  ._.)
   }
 
-  // http://blog.alexmaccaw.com/css-transitions
+  // https://blog.alexmaccaw.com/css-transitions
   $.fn.emulateTransitionEnd = function (duration) {
     var called = false
     var $el = this
@@ -78,7 +78,7 @@ if (typeof jQuery === 'undefined') {
 
 /* ========================================================================
  * Bootstrap: alert.js v3.3.7
- * http://getbootstrap.com/javascript/#alerts
+ * https://getbootstrap.com/javascript/#alerts
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -173,7 +173,7 @@ if (typeof jQuery === 'undefined') {
 
 /* ========================================================================
  * Bootstrap: button.js v3.3.7
- * http://getbootstrap.com/javascript/#buttons
+ * https://getbootstrap.com/javascript/#buttons
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
@@ -299,7 +299,7 @@ if (typeof jQuery === 'undefined') {
 
 /* ========================================================================
  * Bootstrap: carousel.js v3.3.7
- * http://getbootstrap.com/javascript/#carousel
+ * https://getbootstrap.com/javascript/#carousel
  * ========================================================================
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
