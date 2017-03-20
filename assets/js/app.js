@@ -27,10 +27,10 @@ var shanghai = {
         lat: 44.426767,
         lng: 26.102538
     },
-    lagos = {
-        lat: 6.524379,
-        lng: 3.379206
-    },
+    // lagos = {
+    //     lat: 6.524379,
+    //     lng: 3.379206
+    // },
     tokyo = {
         lat: 35.689488,
         lng: 139.691706
@@ -57,7 +57,7 @@ var shanghai = {
         lng: -81.379236
     };
 
-locationArray = [shanghai, karachi, delhi, bucharest, lagos, tokyo, bogota, riyadh, wellington, sophia, orlando];
+locationArray = [shanghai, karachi, delhi, bucharest, tokyo, bogota, riyadh, wellington, sophia, orlando];
 
 //Chooses a random city
 function setRandomLocation() {
@@ -160,7 +160,6 @@ var options1 = {
         styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
     };
 
-//Counts the number of questions 
 function initMap() {
     //Displays initial map
     var map = new google.maps.Map(getMap,options1);
@@ -175,7 +174,7 @@ function initMap() {
             //Puts marker at location basec on "randomLongLat" value
             position: city,
             map: map,
-            icon:'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
+            icon:'https://maps.google.com/mapfiles/kml/paddle/red-stars.png'
         });
 
         //Gets the latitude and longitude
@@ -210,8 +209,8 @@ function initMap() {
         // When the user clicks on the button, open the modal 
             var latInfo = city.lat;
             var longInfo = city.lng;
-            console.log('randomLat' + latInfo);
-            console.log('randomLong' + longInfo);
+            console.log('randomLat ' + latInfo);
+            console.log('randomLong ' + longInfo);
             $.ajax({
                 url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
                 method: 'GET'
