@@ -1,126 +1,104 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-<!-- Title VIDEO GAME with favicon -->
+<!-- Title VIDEO GAME with favicon =================================================== -->
 	<title>Video Game</title>
 	
 	<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-<!-- Linking CSS, Bootstrab, Jquery -->
+<!-- Linking CSS, Bootstrab, Jquery ================================================== -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<!-- JS for the MAP =================================================================== -->
+        <script type="text/javascript">
+            // When the window has finished loading create our google map below
+            google.maps.event.addDomListener(window, 'load', init);
+        
+            function init() {
+                // Basic options for a simple Google Map
+                // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
+                var mapOptions = {
+                    // How zoomed in you want the map to start at (always required)
+                    zoom: 11,
+
+                    // The latitude and longitude to center the map (always required)
+                    center: new google.maps.LatLng(40.6700, -73.9400), // New York
+
+                    // How you would like to style the map. 
+                    // This is where you would paste any style found on Snazzy Maps.
+                    styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
+                };
+
+                // Get the HTML DOM element that will contain your map 
+                // We are using a div with id="map" seen below in the <body>
+                var mapElement = document.getElementById('map');
+
+                // Create the Google Map using our element and options defined above
+                var map = new google.maps.Map(mapElement, mapOptions);
+
+                // Let's also add a marker while we're at it
+                var marker = new google.maps.Marker({
+                    position: new google.maps.LatLng(40.6700, -73.9400),
+                    map: map,
+                    title: 'Snazzy!'
+                });
+            }
+        </script>
 </head>
 <body>
-	<!-- Heart	 -->
-	<img class="centered animated infinite pulse" src="assets/images/logo.png" width="220" />
-	<!-- Text Logo	 -->
-	<img class="centered2" src="assets/images/logo2.png" width="300" style="-webkit-animation-duration: 2s;" />
-
-<div class="container-fluid">
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-        <li class="dropdown">
-          <a class="dropdown-toggle sound" data-toggle="dropdown"><b>CATEGORIES</b><span class="caret"></span></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="#">
-	            	<div class="sound" class="checkbox">
-	            		<label>
-							<input type="checkbox"> Fashion
-						</label>
-					</div>
-				</a>
-			</li>
-            <li><a href="#">
-	            	<div class="sound" class="checkbox">
-	            		<label>
-							<input type="checkbox"> Animals
-						</label>
-					</div>
-				</a>
-			</li>
-            <li><a href="#">
-	            	<div class="sound" class="checkbox">
-	            		<label>
-							<input type="checkbox"> Funny
-						</label>
-					</div>
-				</a>
-			</li>
-            <li><a href="#">
-	            	<div class="sound" class="checkbox">
-	            		<label>
-							<input type="checkbox"> All of them
-						</label>
-					</div>
-				</a>
-			</li>
-          </ul>
-        </li>
-      </ul>
-      <form class="navbar-form navbar-left" role="search">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="USERNAME">
+<div class="container">
+        <!-- Row & Col=========================================================================-->
+    <div class="row first">
+        <div class="col-md-5 portfolio-item">
+            <div class="video-container">
+            <!-- ID PLAYER INSIDE FRAME -->
+            	<iframe id="player" src="https://www.youtube.com/embed/z9Ul9ccDOqE" frameborder="0" allowfullscreen></iframe>
+            </div>
         </div>
-        <button type="submit" class="btn btn-danger sound"><b>PLAY NOW</b></button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-        <li><p class="navbar-text"><b>Already have an account?</b></p></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle sound" data-toggle="dropdown"><b>LOGIN</b> <span class="caret"></span></a>
-			<ul id="login-dp" class="dropdown-menu">
-				<li>
-					 <div class="row">
-							<div class="col-md-12">
-								Login via
-								<div class="social-buttons">
-									<a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
-									<a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
-								</div>
-                                or
-								 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputEmail2">Email address</label>
-											 <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required="">
-										</div>
-										<div class="form-group">
-											 <label class="sr-only" for="exampleInputPassword2">Password</label>
-											 <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required="">
-                                             <div class="help-block text-right"><a href="">Forget the password ?</a></div>
-										</div>
-										<div class="form-group">
-											 <button type="submit" class="btn btn-primary btn-block sound">Sign in</button>
-										</div>
-										<div class="checkbox">
-											 <label>
-											 <input type="checkbox"> keep me logged-in
-											 </label>
-										</div>
-								 </form>
-							</div>
-							<div class="bottom text-center">
-								New here ? <a href="#"><b>Join Us</b></a>
-							</div>
-					 </div>
-				</li>
-			</ul>
-        </li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div>
-
- <!-- Google Api  -->
+    	<div class="col-md-2 portfolio-item">
+                <img class="img-responsive animated infinite pulse upper rounded" src="assets/images/logo.png" width="150" /><br>
+                <img class="centered6" src="assets/images/logo2.png" width="180"/><br><br>
+                <a href="#" class="sound btn btn-danger centered5 btn-block"><span class="glyphicon glyphicon-play"></span> <b>PLAY</b></a>
+                <button type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b>59</b></button>
+        </div>
+        <div class="col-md-5 portfolio-item">
+            <div class="#">
+            <!-- ID MAP INSIDE FRAME -->
+            	<div id="map"></div>
+            </div>
+        </div>
+    	</div><!-- /.row & col -->
+    <!-- jumbotron ============================================================================-->
+    <div class="jumbotron">
+    	<div class="row">
+    		<div class="card">
+            	<div is="wrapper" style="height: 280px; width: 100%; display: block; background-color: #121111;"></div>
+            </div>
+            <div class="card">
+            	<div is="wrapper" style="height: 280px; width: 100%; display: block; background-color: #121111;"></div>
+            </div>
+            <div class="card">
+            	<div is="wrapper" style="height: 280px; width: 100%; display: block; background-color: #121111;"></div>
+            </div>
+            <div class="card">
+            	<div is="wrapper" style="height: 280px; width: 100%; display: block; background-color: #121111;"></div>
+            </div>
+        </div><!-- /. row -->
+    </div><!-- /.jumbotron -->
+<!-- Google Api ===========================================================================  -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBtb_MKondo61EQig6XOVaml9tUEpVtk
 &libraries=geometry&callback=initMap" async defer>
 </script>
+<!-- BOOTSTRAB JS ========================================================================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<!-- FireBase -->
+<!-- FireBase ============================================================================== -->
 <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
-<!-- Sound Effects -->
+<!-- Sound Effects ==========================================================================-->
 <audio id="beep" preload="auto">
 <source src="assets/audio/sound.mp3"></source>
-This browser does not support the HTML5 audio tag.
 </audio>	
 <script>
 var soundEngaged = $("#beep")[0];
@@ -129,5 +107,6 @@ $(".sound")
 soundEngaged.play();
 });
 </script>
+<!-- ======================================================================================== -->
 </body>
 </html>
