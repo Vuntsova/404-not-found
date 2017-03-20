@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Input</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Css -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
+    <!-- Firebase Link -->
+    <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
+</head>
+<body>
+    <!-- Where Map is displayed -->
+    <div id="map"></div>
+
+    <!-- User Input -->
+    <form class="form-inline">
+        <div class="form-group">
+            <label for="username-input">Username</label>
+            <input type="text" class="form-control" id="username-input" placeholder="Enter Username">
+        </div>
+        <div class="form-group">
+            <label for="email-input">Email</label>
+            <input type="email" class="form-control" id="email-input" placeholder="jane.doe@example.com">
+        </div>
+        <button type="submit" class="btn btn-default" id="submitBtn">Submit</button>
+    </form>
+
+    <br><br>
+
+    <div class="panel panel-primary">
+
+        <div class="panel-heading">Leaderboard</div>
+        <div class="panel-body">
+            <!-- Table -->
+            <table class="table table-striped" id="leader-board">
+                <th class="info"> Username </th>
+                <th class="info"> Score </th>
+
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="assets/js/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/googleMaps.js"></script>
+
+</body>
+</html>
