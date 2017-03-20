@@ -27,6 +27,10 @@ var shanghai = {
         lat: 44.426767,
         lng: 26.102538
     },
+    lagos = {
+        lat: 6.524379,
+        lng: 3.379206
+    },
     tokyo = {
         lat: 35.689488,
         lng: 139.691706
@@ -53,7 +57,7 @@ var shanghai = {
         lng: -81.379236
     };
 
-locationArray = [shanghai, karachi, delhi, bucharest, tokyo, bogota, riyadh, wellington, sophia, orlando];
+locationArray = [shanghai, karachi, delhi, bucharest, lagos, tokyo, bogota, riyadh, wellington, sophia, orlando];
 
 //Chooses a random city
 function setRandomLocation() {
@@ -253,7 +257,7 @@ function nextQuestion(){
     city = locationArray[Math.floor(Math.random() * locationArray.length)];
     //Calls function to jump to the next question
     console.log('question number ' + questionCounter);
-    if(questionCounter < 10){
+    if(questionCounter < 4){
         playRandomVideo();
         initMap();
     }
