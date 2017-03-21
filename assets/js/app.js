@@ -1,3 +1,4 @@
+//Stuff
 //global variables
 var city = {
     lat: 1,
@@ -156,6 +157,8 @@ var questionCounter = 0;
 var options1 = {
         //Zooms in or out on the map
         zoom: 1,
+        //removes map/satalite option
+        mapTypeControl : false,
         //Displays map starting at certain location
         center: startDisp,
         styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
@@ -207,16 +210,19 @@ function initMap() {
             map: map
         });
 
-                var contentString = 'You were ' + Math.round(distance) + ' miles off'
+                  var contentString = 'You were ' + Math.round(distance) + ' miles off'
+                  //Creates info-window
                   var infowindow = new google.maps.InfoWindow({
+                  //Sets parameters for the info-window (content and size)
                   content: contentString,
                   maxWidth:200
                 });
                 //displays info box on marker
                 infowindow.open(map,randomMarker);
-                // When map is clicked after info box is displayed it goes to the next question
+                // When the play button is clicked..........
                 $('.play-btn').on('click',function(){
-                        nextQuestion();
+                        //Continue to the next video
+                        nextVid();
                 });
 
 
@@ -230,7 +236,7 @@ function placeMarkerAndPanTo(latLng, map) {
     });
 
 }
-function nextQuestion(){
+function nextVid(){
     //Resets long/lat
     city = locationArray[Math.floor(Math.random() * locationArray.length)];
     //Calls function to jump to the next question
