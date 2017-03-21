@@ -1,96 +1,97 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- Title VIDEO GAME with favicon ==================== -->
-	<title>Video Game</title>
-	<link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-<!-- Bootstrab ==================================== -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-<!-- Styles =================================== -->
-	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-	<link rel="stylesheet" type="text/css" href="assets/css/animate.css">
-<!-- ============== -->
+    <!-- Title VIDEO GAME with favicon ==================== -->
+    <title>Video Game</title>
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+    <!-- Bootstrap ==================================== -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- Styles =================================== -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <!-- ============== -->
 </head>
 <body>
 <div class="container">
-        <!-- Row & Col=========================================================================-->
+    <!-- Row & Col=========================================================================-->
     <div class="row first">
         <div class="col-md-5 portfolio-item">
             <div class="video-container">
-            <!-- ID PLAYER INSIDE FRAME -->
-            	<iframe id="player" src="https://www.youtube.com/embed/z9Ul9ccDOqE" frameborder="0" allowfullscreen></iframe>
+                <!-- ID PLAYER INSIDE FRAME -->
+                <iframe id="player" src="https://www.youtube.com/embed/z9Ul9ccDOqE" frameborder="0" allowfullscreen></iframe>
             </div>
         </div>
-    	<div class="col-md-2 portfolio-item">
-                <img class="img-responsive animated infinite pulse upper rounded" src="assets/images/logo.png" width="150" /><br>
-                <img class="centered6" src="assets/images/logo2.png" width="180"/><br><br>
-                <a href="#" class="sound btn btn-danger centered5 btn-block"><span class="glyphicon glyphicon-play"></span> <b>PLAY</b></a>
-                <button type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b>59</b></button>
+        <div class="col-md-2 portfolio-item">
+            <img class="img-responsive animated infinite pulse upper rounded" src="assets/images/logo.png" width="150" /><br>
+            <img class="centered6" src="assets/images/logo2.png" width="180"/><br><br>
+            <a href="#" class="sound btn btn-danger centered5 btn-block"><span class="glyphicon glyphicon-play"></span> <b>PLAY</b></a>
+            <button type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b>59</b></button>
         </div>
         <div class="col-md-5 portfolio-item">
             <div class="#">
-            <!-- ID MAP INSIDE FRAME -->
-            	<div id="map"></div>
+                <!-- ID MAP INSIDE FRAME -->
+                <div id="map"></div>
             </div>
         </div>
-    	</div><!-- /.row & col -->
+    </div><!-- /.row & col -->
     <!-- jumbotron ============================================================================-->
     <div class="jumbotron">
-    	<div class="row">
-    		<div class="card">
-            	<div id="wrapper">
-                 <!-- ======================== -->
-                 <table class="table table-inverse">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Username</th>
-                      <th><div style="float: right;">Score</div></th>
-                    </tr>
-                    <tr>
-                      <th>1</th>
-                      <th><div id="username">Ramona</th>
-                      <th><div id="score">983</div></th>
-                    </tr>
-                  </thead>
-                </table>
-                 <!-- ======================== -->   
+        <div class="row">
+            <div class="card">
+                <div id="wrapper">
+                    <!-- ======================== -->
+                    <table class="table table-inverse">
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Username</th>
+                            <th><div style="float: right;">Score</div></th>
+                        </tr>
+                        <tr>
+                            <th>1</th>
+                            <th><div id="username">Ramona</th>
+                            <th><div id="score">983</div></th>
+                        </tr>
+                        </thead>
+                    </table>
+                    <!-- ======================== -->
                 </div>
             </div>
             <div class="card">
-            	<div id="wrapper"></div>
+                <div id="wrapper"></div>
             </div>
             <div class="card">
-            	<div id="wrapper" ></div>
+                <div id="wrapper" ></div>
             </div>
             <div class="card">
-            	<div id="wrapper"></div>
+                <div id="wrapper"></div>
             </div>
         </div><!-- /. row -->
     </div><!-- /.jumbotron -->
+</div><!-- /.container -->
 <!-- Javascript ==================================================================================-->
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<!-- Javascript -->
 <script type="text/javascript" src="assets/js/app.js"></script>
 <!-- Google Api ANDY===========================================================================  -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBtb_MKondo61EQig6XOVaml9tUEpVtk
 &libraries=geometry&callback=initMap"
         async defer>
 </script>
-<!-- BOOTSTRAB JS ========================================================================== -->
+<!-- BOOTSTRAP JS ========================================================================== -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!-- FireBase ============================================================================== -->
 <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
 <!-- Sound Effects ==========================================================================-->
 <audio id="beep" preload="auto">
-<source src="assets/audio/sound.mp3"></source>
-</audio>	
+    <source src="assets/audio/sound.mp3"></source>
+</audio>
 <script>
-var soundEngaged = $("#beep")[0];
-$(".sound")
-.mouseenter(function() {
-soundEngaged.play();
-});
+    var soundEngaged = $("#beep")[0];
+    $(".sound")
+        .mouseenter(function() {
+            soundEngaged.play();
+        });
 </script>
 <!-- ======================================================================================== -->
 </body>
