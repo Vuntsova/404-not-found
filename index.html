@@ -1,77 +1,233 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-    <!-- Title VIDEO GAME with favicon ==================== -->
+    <!-- Title VIDEO GAME with favicon ================ -->
     <title>Video Game</title>
     <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
-    <!-- Bootstrap ==================================== -->
+    <!-- Bootstrab ==================================== -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- Styles =================================== -->
+    <!-- Styles ======================================= -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- ============== -->
 </head>
 <body>
-<div class="container">
-    <!-- Row & Col=========================================================================-->
-    <div class="row first">
-        <div class="col-md-5 portfolio-item">
-            <div class="video-container">
-                <!-- ID PLAYER INSIDE FRAME -->
-                <iframe id="player" src="https://www.youtube.com/embed/z9Ul9ccDOqE" frameborder="0" allowfullscreen></iframe>
-            </div>
-        </div>
-        <div class="col-md-2 portfolio-item">
-            <img class="img-responsive animated infinite pulse upper rounded" src="assets/images/logo.png" width="150" /><br>
-            <img class="centered6" src="assets/images/logo2.png" width="180"/><br><br>
-            <a href="#" class="sound btn btn-danger centered5 btn-block"><span class="glyphicon glyphicon-play"></span> <b>PLAY</b></a>
-            <button type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b>59</b></button>
-        </div>
-        <div class="col-md-5 portfolio-item">
-            <div class="#">
-                <!-- ID MAP INSIDE FRAME -->
-                <div id="map"></div>
-            </div>
-        </div>
-    </div><!-- /.row & col -->
-    <!-- jumbotron ============================================================================-->
-    <div class="jumbotron">
-        <div class="row">
-            <div class="card">
-                <div id="wrapper">
-                    <!-- ======================== -->
-                    <table class="table table-inverse">
-                        <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Username</th>
-                            <th><div style="float: right;">Score</div></th>
-                        </tr>
-                        <tr>
-                            <th>1</th>
-                            <th><div id="username">Ramona</th>
-                            <th><div id="score">983</div></th>
-                        </tr>
-                        </thead>
-                    </table>
-                    <!-- ======================== -->
+
+<!-- ======================================================================= -->
+<!-- Heart   -->
+<div id="startPage">
+    <!-- ===========LOGO================ -->
+    <div id="logo">
+        <img class="centered animated infinite pulse" src="assets/images/logo.png" width="220" />
+        <!-- Text Logo   -->
+        <img class="centered2" src="assets/images/logo2.png" width="300" style="-webkit-animation-duration: 2s;" />
+    </div>
+    <!-- ==========END LOGO ============ -->
+    <div class="container-fluid">
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle sound" data-toggle="dropdown"><b>CATEGORIES</b><span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#">
+                            <div class="sound" class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Fashion
+                                </label>
+                            </div>
+                        </a>
+                        </li>
+                        <li><a href="#">
+                            <div class="sound" class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Animals
+                                </label>
+                            </div>
+                        </a>
+                        </li>
+                        <li><a href="#">
+                            <div class="sound" class="checkbox">
+                                <label>
+                                    <input type="checkbox"> Funny
+                                </label>
+                            </div>
+                        </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                    <input id="username" type="text" class="form-control" placeholder="USERNAME">
+                </div>
+                <button type="submit" class="btn btn-danger sound" id="playBtn"><b>PLAY NOW</b></button>
+            </form>
+            <ul class="nav navbar-nav navbar-right">
+                <li><p class="navbar-text"><b>Already have an account?</b></p></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle sound" data-toggle="dropdown"><b>LOGIN</b> <span class="caret"></span></a>
+                    <ul id="login-dp" class="dropdown-menu">
+                        <li>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    Login via
+                                    <div class="social-buttons">
+                                        <a href="#" class="btn btn-fb"><i class="fa fa-facebook"></i> Facebook</a>
+                                        <a href="#" class="btn btn-tw"><i class="fa fa-twitter"></i> Twitter</a>
+                                    </div>
+                                    or
+                                    <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                                            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required="">
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                            <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required="">
+                                            <div class="help-block text-right"><a href="">Forget the password ?</a></div>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn btn-primary btn-block sound">Sign in</button>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox"> keep me logged-in
+                                            </label>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="bottom text-center">
+                                    New here ? <a href="#"><b>Join Us</b></a>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!--/. container fluid-->
+</div><!--END startPage-->
+<!-- ============================== SECOND PAGE ============================ -->
+<div id="mainPage">
+    <div class="container">
+        <div class="row first">
+            <div class="col-md-5 portfolio-item">
+                <div class="video-container">
+                    <!-- ID PLAYER INSIDE FRAME -->
+                    <iframe id="player" src="https://www.youtube.com/embed/z9Ul9ccDOqE" frameborder="0" allowfullscreen></iframe>
                 </div>
             </div>
-            <div class="card">
-                <div id="wrapper"></div>
+            <div class="col-md-2 portfolio-item">
+                <img class="img-responsive animated infinite pulse upper rounded" src="assets/images/logo.png" width="150" /><br>
+                <img class="centered6" src="assets/images/logo2.png" width="180"/><br><br>
+                <a href="#" class="sound btn btn-danger centered5 btn-block"><span class="glyphicon glyphicon-play"></span> <b>PLAY</b></a>
+                <button type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b>59</b></button>
             </div>
-            <div class="card">
-                <div id="wrapper" ></div>
+            <div class="col-md-5 portfolio-item">
+                <div class="#">
+                    <!-- ID MAP INSIDE FRAME -->
+                    <div id="map"></div>
+                </div>
             </div>
-            <div class="card">
-                <div id="wrapper"></div>
-            </div>
-        </div><!-- /. row -->
-    </div><!-- /.jumbotron -->
-</div><!-- /.container -->
+        </div><!-- /.row & col -->
+        <!-- jumbotron ============================================================================-->
+        <div class="jumbotron">
+            <div class="row">
+                <div class="card">
+                    <div id="wrapper"></div>
+                </div>
+                <div class="card">
+                    <div class="wrapper"></div>
+                </div>
+                <div class="card">
+                    <div class="wrapper"></div>
+                </div>
+                <div class="card">
+                    <div class="wrapper">
+                        <!-- ===========TOP 10 Players============= -->
+                        <table class="table table-inverse">
+                            <thead>
+                            <tr>
+                                <div id="top" class="animated zoomInDown "><b><span id="ten">TOP 10 </span>  BEST PLAYERS</b></div>
+                            </tr>
+                            <!-- ============= 1 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp">1</div></th>
+                                <th><div class="username" class="animated zoomInUp">User 1</div></th>
+                                <th><div class="score" class="animated zoomInUp">983</div></th>
+                            </tr>
+                            <!-- ============= 2 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.1s;">2</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.1s;">User 2</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.1s;">883</div></th>
+                            </tr>
+                            <!-- ============= 3 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.2s;">3</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.2s;">User 3</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.2s;">783</div></th>
+                            </tr>
+                            <!-- ============= 4 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.3s;">4</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.3s;">User 4</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.3s;">683</div></th>
+                            </tr>
+                            <!-- ============= 5 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.4s;">5</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.4s;">User 5</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.4s;">583</div></th>
+                            </tr>
+                            <!-- ============= 6 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.5s;">6</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.5s;">User 6</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.5s;">483</div></th>
+                            </tr>
+                            <!-- ============= 7 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.6s;">7</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.6s;">User 7</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.6s;">383</div></th>
+                            </tr>
+                            <!-- ============= 8 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.7s;">8</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.7s;">User 8</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.7s;">283</div></th>
+                            </tr>
+                            <!-- ============= 9 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.8s;">9</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.8s;">User 9</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.8s;">183</div></th>
+                            </tr>
+                            <!-- ============= 10 =================== -->
+                            <tr>
+                                <th><div class="animated zoomInUp " style="-webkit-animation-delay: 0.9s;">10</div></th>
+                                <th><div class="username" class="animated zoomInUp" style="-webkit-animation-delay: 0.9s;">User 10</div></th>
+                                <th><div class="score" class="animated zoomInUp" style="-webkit-animation-delay: 0.9s;">83</div></th>
+                            </tr>
+
+                            </thead>
+                        </table>
+                        <!-- ======================== -->
+                    </div>
+                </div>
+            </div><!-- /. row -->
+        </div><!-- /.jumbotron -->
+    </div>
+</div><!--END mainPage-->
+<!-- ======================== END SECOND PAGE ============================ -->
 <!-- Javascript ==================================================================================-->
 <!-- Javascript -->
 <script type="text/javascript" src="assets/js/app.js"></script>
+<script type="text/javascript" src="assets/js/game.js"></script>
 <!-- Google Api ANDY===========================================================================  -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDnBtb_MKondo61EQig6XOVaml9tUEpVtk
 &libraries=geometry&callback=initMap"
@@ -86,13 +242,5 @@
 <audio id="beep" preload="auto">
     <source src="assets/audio/sound.mp3"></source>
 </audio>
-<script>
-    var soundEngaged = $("#beep")[0];
-    $(".sound")
-        .mouseenter(function() {
-            soundEngaged.play();
-        });
-</script>
-<!-- ======================================================================================== -->
 </body>
 </html>

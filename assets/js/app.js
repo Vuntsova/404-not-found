@@ -173,7 +173,7 @@ function initMap() {
             //Puts marker at location basec on "randomLongLat" value
             position: city,
             map: map,
-            icon:'https://maps.google.com/mapfiles/kml/paddle/red-stars.png'
+            icon:'http://maps.google.com/mapfiles/kml/paddle/red-stars.png'
         });
 
         //Gets the latitude and longitude
@@ -209,7 +209,7 @@ function initMap() {
             var latInfo = city.lat;
             var longInfo = city.lng;
             $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
+                url: 'http://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
                 method: 'GET'
             })
             .done(function(response){
@@ -260,6 +260,11 @@ function nextQuestion(){
         alert('Game Over');
     }
 }
+
+
+
+
+
 
 
 
