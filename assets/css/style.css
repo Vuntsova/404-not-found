@@ -195,4 +195,15 @@ height: 100%;
 .container-fluid{
   background-color:#121111;
 }
-
+.table-inverse{
+  color: red;
+}
+#score{
+  float: right;
+}
+#wrapper{
+  height: 280px; 
+  width: 100%; 
+  display: block; 
+  background-color: #121111;
+}
