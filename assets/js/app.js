@@ -90,7 +90,7 @@ function playRandomVideo (searchTerm){
             videoId = response.items[0].id.videoId;
             console.log("response", videoId);
             getVideoDetails(videoId);           
-            player.loadVideoById(videoId, 0, 60);
+            player.loadVideoById(videoId, 10, 60);
         })
 }
 
@@ -138,7 +138,8 @@ function loadPlayer() {
 
 function onPlayerStateChange(event) {
     if(event.data == YT.PlayerState.ENDED) {
-        player.destroy();
+        // player.destroy();
+        player.playVideo();
         $('#head').css({"background-color":"#aaa"});
     }
 }
@@ -205,44 +206,21 @@ function initMap() {
             strokeWeight: 3,
             map: map
         });
-       
-        // When the user clicks on the button, open the modal 
-            var latInfo = city.lat;
-            var longInfo = city.lng;
-            console.log('randomLat ' + latInfo);
-            console.log('randomLong ' + longInfo);
-            $.ajax({
-                url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + latInfo + ',' + longInfo + '&sensor=true',
-                method: 'GET'
-            })
-            .done(function(response){
-                console.log(response);
-                //Displays infobox above random marker
-                var contentString = 'The area is ' + response['results'][0]['formatted_address'] +
-                                          ' and you were ' + Math.round(distance) + ' miles off' + 
-                                          '<br>' + '<br>' + 
-                                          'Double-Click anywhere to continue';
-                var infowindow = new google.maps.InfoWindow({
+
+                var contentString = 'You were ' + Math.round(distance) + ' miles off'
+                  var infowindow = new google.maps.InfoWindow({
                   content: contentString,
                   maxWidth:200
                 });
                 //displays info box on marker
                 infowindow.open(map,randomMarker);
                 // When map is clicked after info box is displayed it goes to the next question
-                google.maps.event.addListener(map, 'dblclick', function() {
-                    if(infowindow){
-                       //adds 1 to question counter
-                       questionCounter++;
-                       //Closes info box above marker
-                       infowindow.close();
-                       //goes to the next question
-                       nextQuestion();
-                    }
+                $('.play-btn').on('click',function(){
+                        nextQuestion();
                 });
 
-            });
-    });
-         
+
+    });         
 }
 //Function to create marker
 function placeMarkerAndPanTo(latLng, map) {
@@ -257,7 +235,7 @@ function nextQuestion(){
     city = locationArray[Math.floor(Math.random() * locationArray.length)];
     //Calls function to jump to the next question
     console.log('question number ' + questionCounter);
-    if(questionCounter < 4){
+    if(questionCounter < 10){
         playRandomVideo();
         initMap();
     }
