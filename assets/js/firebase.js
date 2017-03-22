@@ -8,7 +8,7 @@ var config = {
 };
 firebase.initializeApp(config);
 
-var dataRef = firebase.database();
+var database = firebase.database();
 
 // Initial Values
 var username = "";
