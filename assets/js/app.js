@@ -91,7 +91,7 @@ function playRandomVideo (searchTerm){
             videoId = response.items[0].id.videoId;
             console.log("response", videoId);
 
-            getVideoDetails(videoId);           
+            getVideoDetails(videoId);
             player.loadVideoById(videoId, 10, 60);
         })
 }
@@ -107,7 +107,7 @@ function getVideoDetails(id) {
         method: "GET"
     })
 
-        //sets location data from youtube
+    //sets location data from youtube
         .done(function (response){
             city.lat = response.items[0].recordingDetails.location.latitude;
             city.lng = response.items[0].recordingDetails.location.longitude;
@@ -141,7 +141,7 @@ function loadPlayer() {
 function onPlayerStateChange(event) {
     if(event.data == YT.PlayerState.ENDED) {
         player.playVideo();
-$('#head').css({"background-color":"#aaa"});
+        $('#head').css({"background-color":"#aaa"});
     }
 }
 
@@ -155,14 +155,14 @@ var marker;
 var randomMarker;
 var questionCounter = 0;
 var options1 = {
-        //Zooms in or out on the map
-        zoom: 1,
-        //removes map/satalite option
-        mapTypeControl : false,
-        //Displays map starting at certain location
-        center: startDisp,
-        styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
-    };
+    //Zooms in or out on the map
+    zoom: 1,
+    //removes map/satalite option
+    mapTypeControl : false,
+    //Displays map starting at certain location
+    center: startDisp,
+    styles: [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"color":"#ffffff"}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"off"}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#c9323b"}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#c9323b"},{"weight":1.2}]},{"featureType":"administrative.locality","elementType":"geometry.fill","stylers":[{"lightness":"-1"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.fill","stylers":[{"lightness":"0"},{"saturation":"0"}]},{"featureType":"administrative.neighborhood","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"administrative.land_parcel","elementType":"labels.text.stroke","stylers":[{"weight":"0.01"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#c9323b"}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#99282f"}]},{"featureType":"road.highway.controlled_access","elementType":"geometry.stroke","stylers":[{"color":"#99282f"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#99282f"}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#090228"}]}]
+};
 
 function initMap() {
     //Displays initial map
@@ -170,7 +170,7 @@ function initMap() {
 
     // When area on map is clicked......
     google.maps.event.addListener(map,'click',function(event) {
-        
+
         //Prevents the map from being clicked a second time after choosing location
         map = new google.maps.Map(getMap,options1);
         //Displays marker on map depending on users longitude/latitude
@@ -212,24 +212,29 @@ function initMap() {
             map: map
         });
 
-                  var contentString = 'You were ' + Math.round(distance) + ' miles off'
-                  //Creates info-window
-                  var infowindow = new google.maps.InfoWindow({
-                  //Sets parameters for the info-window (content and size)
-                  content: contentString,
-                  maxWidth:200
-                });
-                //displays info box on marker
-                infowindow.open(map,randomMarker);
-                // When the play button is clicked..........
-                $('.play-btn').on('click',function(){
-                        //Continue to the next video
-                        nextVid();
-                });
-
-
-    });         
+        var contentString = 'You were ' + Math.round(distance) + ' miles off'
+        //Creates info-window
+        var infowindow = new google.maps.InfoWindow({
+            //Sets parameters for the info-window (content and size)
+            content: contentString,
+            maxWidth:200
+        });
+        //displays info box on marker
+        infowindow.open(map,randomMarker);
+        if(questionCounter > 4) {
+            console.log("GAME OVER!");
+            gameOver();
+        }
+    });
 }
+
+// When the play button is clicked..........
+$('.play-btn').on('click',function(){
+    //Continue to the next video
+    nextVid();
+});
+
+
 //Function to create marker
 function placeMarkerAndPanTo(latLng, map) {
     marker = new google.maps.Marker({
@@ -241,16 +246,11 @@ function placeMarkerAndPanTo(latLng, map) {
 function nextVid(){
     //Resets long/lat
     city = locationArray[Math.floor(Math.random() * locationArray.length)];
-    //Calls function to jump to the next question
-    console.log('question number ' + questionCounter);
-    if(questionCounter < 3){
-        playRandomVideo();
-        initMap();
-    }
-    else{
-        gameOver();
-    }
+    //Iterates the question counter
     questionCounter++;
+    //Plays next video / resets map
+    playRandomVideo();
+    initMap();
 }
 
 //Game Logic
@@ -259,15 +259,20 @@ function gameInitialize()
     questionCounter = 0;
     userScore = 0;
     loadPlayer();
+    $(".total").html("0");
 }
 
 function calculateScore(miles)
 {
-    console.log("miles", miles);
-    var pointsEarned = 24901 - miles.toFixed(2);
-    console.log("points earned", pointsEarned);
+    //Calculate and update score
+    var pointsEarned = Math.round((24901 - miles) / 10);
     userScore += parseFloat(pointsEarned);
-    console.log("User Score", userScore);
+
+    //Display Scores
+    $(".current").html(pointsEarned.toLocaleString());
+    $(".total").html(userScore.toLocaleString());
+    console.log("question", questionCounter);
+
 }
 
 function gameOver() {
