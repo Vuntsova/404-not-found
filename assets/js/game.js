@@ -11,9 +11,10 @@ soundEngaged.play();
 
 $("#mainPage").hide();
 $("#playBtn").click(function(){
+
         $("#startPage").hide();
         $('#mainPage').show();
-
+    return false;
     });
 //==================================================
 
