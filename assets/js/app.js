@@ -7,6 +7,7 @@ var city = {
 var citySearch;
 var locationArray = [];
 var videoId;
+var userScore = 0;
 
 //City objects
 var shanghai = {
@@ -144,8 +145,8 @@ $('#head').css({"background-color":"#aaa"});
     }
 }
 
-loadPlayer();
-setTimeout(function(){ playRandomVideo(); }, 2000);
+// loadPlayer();
+// setTimeout(function(){ playRandomVideo(); }, 2000);
 
 //Where the map is viewed when page loads 
 var startDisp = {lat: 0, lng: 0};
@@ -195,6 +196,8 @@ function initMap() {
         var latLngB = new google.maps.LatLng(longitude,laditude);
         //Returns the distance of two points in miles
         var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB)/(1000 *  0.6214);
+        //Update Score
+        calculateScore(distance);
         //Testing
         console.log('Distance between two points: ' + Math.round(distance) + ' miles');
         //Draws Line
@@ -240,20 +243,34 @@ function nextVid(){
     city = locationArray[Math.floor(Math.random() * locationArray.length)];
     //Calls function to jump to the next question
     console.log('question number ' + questionCounter);
-    if(questionCounter < 10){
+    if(questionCounter < 3){
         playRandomVideo();
         initMap();
     }
     else{
-        alert('Game Over');
+        gameOver();
     }
+    questionCounter++;
 }
 
+//Game Logic
+function gameInitialize()
+{
+    questionCounter = 0;
+    userScore = 0;
+    loadPlayer();
+}
 
+function calculateScore(miles)
+{
+    console.log("miles", miles);
+    var pointsEarned = 24901 - miles.toFixed(2);
+    console.log("points earned", pointsEarned);
+    userScore += parseFloat(pointsEarned);
+    console.log("User Score", userScore);
+}
 
-
-
-
-
-
-
+function gameOver() {
+    //stop all video
+    //display game over modal
+}
