@@ -22,27 +22,25 @@ $("#playBtn").on("click", function() {
     var userName = $("#username").val().trim();
     // var score -- need to figure it out
 
-
     // Create a new object and push into db
     var players = {
         username: userName,
         //score: score
     }
 
+    console.log("Username: " + players.username);
+    //console.log("Score: " + players.score);
+
     // Code for pushing to db
     if (userName != "" ) {
         database.ref().push(players);
     } else {
-        alert("Please enter train data");
+        alert("Field is required!");
     }
 
 
     // Clear out form fields
     $("#username").val("");
-
-    console.log("Username: " + players.username);
-    //console.log("Score: " + players.score);
-
 
 });
 
@@ -56,6 +54,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     //var score = childSnapshot.val().score;
 
     //$("#leader-board > tbody").append("<tr><td>" + userName + "</td><td" + email);
-}, function(errorObject){
+}, function(errorObject) {
     console.log("Errors handled: " + errorObject.code);
+});
 
