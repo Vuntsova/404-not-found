@@ -45,7 +45,7 @@ $("#playBtn").on("click", function() {
 });
 
 // Firebase watcher + initial loader
-dataRef.ref().on("child_added", function (childSnapshot) {
+database.ref().on("child_added", function (childSnapshot) {
 
     // Log everything that's coming out of snapshot
     console.log(childSnapshot.val());
