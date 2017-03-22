@@ -44,10 +44,11 @@ body{
   top: 60%;
   left: 0%;
 }
-#wrapper{
+.wrapper{
   height: 280px;
   overflow: auto;
-  width: 100%; display: 
+  width: 100%; 
+  display: 
   block; 
   background-color: #121111;
 }
@@ -158,10 +159,19 @@ body{
   margin-bottom: 0;
   background-color: #302e2f;
   opacity: 0.7;
-  padding: 11px 43px 11px 43px;
+  padding-right: 15px;
+  padding-left: 15px;
+  border-radius: 6px;
 }
-.card {
-  background-color: red;
+
+.card1 {
+  float: left;
+  width: 75%;
+  padding: .75rem;
+  margin-bottom: 0rem;  border-radius: 0px;
+  background-color: #302e2f;
+}
+.card2 {
   float: left;
   width: 25%;
   padding: .75rem;
@@ -208,7 +218,7 @@ height: 100%;
 #score{
   float: right;
 }
-#top{
+.top{
   color: red;
   text-align: center;
   padding: 10px;
@@ -216,5 +226,22 @@ height: 100%;
 #ten{
   color: #fff;
 }
-
-
+th{
+  text-align: center;
+}
+.total{
+  font-size: 50px;
+  color: white;
+  font-weight: bolder;
+  text-align: center;
+}
+.current{
+  color: white;
+  font-size: 18px;
+  color: red;
+  font-weight: bolder;
+  text-align: center;
+}
+.uLogo{
+  text-align: center;
+}
