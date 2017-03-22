@@ -54,5 +54,9 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     //$("#leader-board > tbody").append("<tr><td>" + userName + "</td><td" + email);
 }, function(errorObject){
     console.log("Errors handled: " + errorObject.code);
+<<<<<<< HEAD
 });
 
+=======
+});
+>>>>>>> dde03471092e9b5c815f456c7006a28c97182cde

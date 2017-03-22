@@ -44,6 +44,13 @@ body{
   top: 60%;
   left: 0%;
 }
+#wrapper{
+  height: 280px;
+  overflow: auto;
+  width: 100%; display: 
+  block; 
+  background-color: #121111;
+}
 .btn-danger{
 	background-color: #b71418;
 }
@@ -173,7 +180,7 @@ body{
 #map{
   height: 271px; 
   width: 100%; 
-  background-color: #ccc;
+  background-color: #090228;
   border:15px solid #9a2b25;
   border-radius: 15px;
 }
@@ -201,9 +208,13 @@ height: 100%;
 #score{
   float: right;
 }
-#wrapper{
-  height: 280px; 
-  width: 100%; 
-  display: block; 
-  background-color: #121111;
+#top{
+  color: red;
+  text-align: center;
+  padding: 10px;
 }
+#ten{
+  color: #fff;
+}
+
+
