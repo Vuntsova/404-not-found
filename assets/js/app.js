@@ -67,42 +67,6 @@ var players = [
         {
             name:'The Rock',
             score: 120
-        },
-        {
-            name:'goku',
-            score: 100,
-        },
-        {
-            name:'Frosty The Snow Man',
-            score: 680
-        },
-        {
-            name:'Mr Hat',
-            score: 9999
-        },
-        {
-            name:'Elon Musk',
-            score: 2000,
-        },
-        {
-            name:'Anonoymous',
-            score: 8000
-        },
-        {
-            name:'Red Ranger',
-            score: 120
-        },
-        {
-            name:'Mark Zuckerburgh',
-            score: 100,
-        },
-        {
-            name:'Manbear Pig',
-            score: 300
-        },
-        {
-            name:'Eric cartman',
-            score: 400
         }
 ]
 //Capture value of userInput   
@@ -314,15 +278,15 @@ function leaderBoard() {
     delayNum = 0.0;
     //removes first object section
     sortPlayers = players.slice(0);
-    //sorts object by score from highiest to lowest 
+    //sorts object by score from highiest to lowest
     sortPlayers.sort(function(a,b){
         //returns highest to lowest
         return b.score - a.score;
         //leaderBoard(delayNum, sortPlayers);
     });
-    
-    //Creates 10 tr tags    
-    for(var i=0; i < 10; i++){
+
+    //Creates 10 tr tags
+    for(var i=0; i < players.length || i < 10; i++){
         var newTr = $('<tr>');
             //Creates 3 th tags and 1 div tag
             for(var j = 0; j < 3; j++){
@@ -330,7 +294,7 @@ function leaderBoard() {
                 var newDiv =  $('<div>');
                 //Gives div a class and style
                 newDiv.attr('class','animated zoomInDown');
-                newDiv.attr('style',"-webkit-animation-delay: " + 
+                newDiv.attr('style',"-webkit-animation-delay: " +
                              delayNum.toFixed(1) + 's;');
                 //adds player number to first row
                 if(j === 0){
@@ -396,7 +360,7 @@ function gameInitialize()
     loadPlayer();
     $(".total").html("0");
     //Loads leaderBoard
-    leaderBoard();
+    //leaderBoard();
 }
 
 function calculateScore(miles)
@@ -408,9 +372,6 @@ function calculateScore(miles)
     //Display Scores
     $(".current").html(pointsEarned.toLocaleString());
     $(".total").html(userScore.toLocaleString());
-    database.ref("/playerData").push({
-        user_score: userScore
-    });
     console.log("SC:" + userScore);// added by me
     console.log("question", questionCounter);
 
@@ -454,22 +415,15 @@ function stopTimer() {
 
 function gameOver() {
     //stop all video
+
+    //push score to firebase
+    pushtoFirebase();
+
     //display game over modal
     setTimeout(function () {
         $("#mainPage").hide();
         $("#overPage").show();
         $('.leaderBoard').empty();
-        //If users score is higher then the last score in the top 10 list..
-        if(userScore > sortPlayers[9]['score']){
-            //Push the score and username to the array of objects
-            players.push({name: userNameVal, score:userScore});
-            //Re-sorts the leaderboard from highest to lowest and adds it to the html
-            leaderBoard();
-        }
-        else{
-            //Adds the leaderboard to html
-            leaderBoard();
-        }
     }, 5000);
     //hide play button
     $(".play-btn").hide();

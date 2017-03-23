@@ -1,3 +1,5 @@
+var userName;
+
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBXDYThOZ40w_73kgIsACKsv8_4fqOFl-w",
@@ -10,35 +12,35 @@ firebase.initializeApp(config);
 // Create a variable to reference the database
 var database = firebase.database();
 
-// connectionsRef references a specific location in our database
-// All of our connections will be stored in this directory
-var connectionsRef = database.ref("/connections");
-
-// '.info/connected' is a special location provided by Firebase that is updated
-// every time the client's connection state changes.
-// '.info/connected' is a boolean value, true if the client is connected and false if they are not.
-var connectedRef = database.ref(".info/connected");
-
-// When the client's connection state changes...
-connectedRef.on("value", function(snap) {
-
-// If they are connected..
-if (snap.val()) {
-
-    // Add user to the connections list.
-    var con = connectionsRef.push(true);
-    // Remove user from the connection list when they disconnect.
-    con.onDisconnect().remove();
-    }
-});
-
-// When first loaded or when the connections list changes...
-connectionsRef.on("value", function(snap) {
-
-    // Display the viewer count in the html.
-    // The number of online users is the number of children in the connections list.
-    $("#currPlayers").html(snap.numChildren());
-});
+// // connectionsRef references a specific location in our database
+// // All of our connections will be stored in this directory
+// var connectionsRef = database.ref("/connections");
+//
+// // '.info/connected' is a special location provided by Firebase that is updated
+// // every time the client's connection state changes.
+// // '.info/connected' is a boolean value, true if the client is connected and false if they are not.
+// var connectedRef = database.ref(".info/connected");
+//
+// // When the client's connection state changes...
+// connectedRef.on("value", function(snap) {
+//
+// // If they are connected..
+// if (snap.val()) {
+//
+//     // Add user to the connections list.
+//     var con = connectionsRef.push(true);
+//     // Remove user from the connection list when they disconnect.
+//     con.onDisconnect().remove();
+//     }
+// });
+//
+// // When first loaded or when the connections list changes...
+// connectionsRef.on("value", function(snap) {
+//
+//     // Display the viewer count in the html.
+//     // The number of online users is the number of children in the connections list.
+//     $("#currPlayers").html(snap.numChildren());
+// });
 
 // Initial Values
 var initialPlayer = "";
@@ -83,35 +85,50 @@ $("#playBtn").on("click", function(event) {
     event.preventDefault();
 
     //Get the input value
-    var userName = $("#username").val().trim();
+    userName = $("#username").val().trim();
     //var score = userScore;
 
     // log the player username
     console.log("Your username is: " + userName);
-
-    // Save the new username in Firebase
-    database.ref("/playerData").push({
-        player_name: userName,
-        //user_score: score,
-        date_Added: firebase.database.ServerValue.TIMESTAMP
-    });
 
 
     // Code for pushing to db
     // database.ref().push(players);
 });
 
+function pushtoFirebase() {
+
+    // Save the new username in Firebase
+    database.ref("/playerData").push({
+        player_name: userName,
+        user_score: userScore,
+        date_Added: firebase.database.ServerValue.TIMESTAMP
+    });
+}
+
 // // Firebase watcher + initial loader
-// database.ref().on("child_added", function (childSnapshot) {
-//
-//     // Log everything that's coming out of snapshot
-//     console.log(childSnapshot.val());
-//
-//     var newUser = childSnapshot.val().player_name;
-//     var newScore = childSnapshot.val().user_score;
-//
-//     //$("#leader-board > tbody").append("<tr><td>" + userName + "</td><td" + email);
-// }, function(errorObject) {
-//         console.log("Errors handled: " + errorObject.code);
-// });
+database.ref("/playerData").on("child_added", function (childSnapshot) {
+
+    // Log everything that's coming out of snapshot
+    console.log(childSnapshot.val());
+
+    var newUser = childSnapshot.val().player_name;
+    var newScore = childSnapshot.val().user_score;
+
+    newUserObject = {
+        name: newUser,
+        score: newScore
+    };
+
+    console.log("newUser", newUser);
+    console.log("newScore", newScore);
+
+    players.push(newUserObject);
+    console.log(players);
+    leaderBoard();
+
+    //$("#leader-board > tbody").append("<tr><td>" + userName + "</td><td" + email);
+}, function(errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+});
 
