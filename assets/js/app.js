@@ -311,7 +311,7 @@ var timerId;
 
 function countdown() {
     //Decrement timer
-    timer = timer - 10;
+    timer--;
 
     //Update page
     $(".centered4").text(timer);
@@ -322,6 +322,10 @@ function countdown() {
         stopTimer();
         //Creates new map and disables drag, zoom and click options
         map = new google.maps.Map(getMap,options2);
+        //reenable button
+        $(".play-btn").prop('disabled', false);
+        $(".play-btn").removeClass("disabled");
+
     }
 }
 
@@ -339,6 +343,10 @@ function stopTimer() {
 function gameOver() {
     //stop all video
     //display game over modal
+    setTimeout(function () {
+        $("#mainPage").hide();
+        $("#overPage").show();
+    }, 5000);
     //hide play button
     $(".play-btn").hide();
 }
