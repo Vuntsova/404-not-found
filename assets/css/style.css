@@ -245,3 +245,9 @@ th{
 .uLogo{
   text-align: center;
 }
+.rules{
+  padding: 15px;
+}
+.nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
+  opacity: 0.6;
+}
