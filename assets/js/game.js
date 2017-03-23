@@ -11,7 +11,7 @@ $(document).ready(function() {
         .mouseenter(function() {
             soundEngaged.play();
         });
-
+    $("#overPage").hide();
     $("#mainPage").hide();
     $("#playBtn").click(function(){
 
