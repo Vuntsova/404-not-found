@@ -12,7 +12,6 @@ $(document).ready(function() {
             soundEngaged.play();
         });
 
-    $("#overPage").hide();
     $("#mainPage").hide();
     $("#playBtn").click(function(){
 

@@ -273,4 +273,6 @@ function calculateScore(miles)
 function gameOver() {
     //stop all video
     //display game over modal
+    $("#mainPage").hide();
+    $("#overPage").show();
 }
