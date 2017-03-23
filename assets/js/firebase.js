@@ -35,7 +35,8 @@ $("#playBtn").on("click", function() {
     if (userName != "" ) {
         database.ref().push(players);
     } else {
-        alert("Field is required!");
+        document.getElementById("username").atribute[placeholder] = "*username is requered";
+
     }
 
 
