@@ -20,28 +20,20 @@ $("#playBtn").on("click", function() {
 
     //Code in the logic for storing and retrieving the most recent user
     var userName = $("#username").val().trim();
-    // var score -- need to figure it out
+    var score = userScore;
 
     // Create a new object and push into db
     var players = {
-        username: userName,
-        //score: score
+        player_name: userName,
+        user_score: score,
+        date_Added: firebase.database.ServerValue.TIMESTAMP
     }
 
-    console.log("Username: " + players.username);
-    //console.log("Score: " + players.score);
+    console.log("Username: " + players.player_name);
+    console.log("Score: " + players.user_score);
 
     // Code for pushing to db
-    if (userName != "" ) {
-        database.ref().push(players);
-    } else {
-        alert("Field is required!");
-    }
-
-
-    // Clear out form fields
-    $("#username").val("");
-
+    database.ref().push(players);
 });
 
 // Firebase watcher + initial loader
@@ -50,8 +42,8 @@ database.ref().on("child_added", function (childSnapshot) {
     // Log everything that's coming out of snapshot
     console.log(childSnapshot.val());
 
-    var userName = childSnapshot.val().username;
-    //var score = childSnapshot.val().score;
+    var newUser = childSnapshot.val().player_name;
+    var newScore = childSnapshot.val().user_score;
 
     //$("#leader-board > tbody").append("<tr><td>" + userName + "</td><td" + email);
 }, function(errorObject) {
