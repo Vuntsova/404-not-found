@@ -145,9 +145,6 @@ function onPlayerStateChange(event) {
     }
 }
 
-// loadPlayer();
-// setTimeout(function(){ playRandomVideo(); }, 2000);
-
 //Where the map is viewed when page loads 
 var startDisp = {lat: 0, lng: 0};
 var getMap = document.getElementById('map');
@@ -225,15 +222,23 @@ function initMap() {
             console.log("GAME OVER!");
             gameOver();
         }
+
+        //reenable button
+        $(".play-btn").prop('disabled', false);
+        $(".play-btn").removeClass("disabled");
     });
 }
 
 // When the play button is clicked..........
 $('.play-btn').on('click',function(){
+    if($(this).prop('disabled'))
+    {
+        return;
+    }
+
     //Continue to the next video
     nextVid();
 });
-
 
 //Function to create marker
 function placeMarkerAndPanTo(latLng, map) {
@@ -243,6 +248,7 @@ function placeMarkerAndPanTo(latLng, map) {
     });
 
 }
+
 function nextVid(){
     //Resets long/lat
     city = locationArray[Math.floor(Math.random() * locationArray.length)];
@@ -251,6 +257,8 @@ function nextVid(){
     //Plays next video / resets map
     playRandomVideo();
     initMap();
+    $(".play-btn").prop('disabled', true);
+    $(".play-btn").addClass("disabled")
 }
 
 //Game Logic
