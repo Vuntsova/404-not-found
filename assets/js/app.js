@@ -303,6 +303,10 @@ function calculateScore(miles)
     //Display Scores
     $(".current").html(pointsEarned.toLocaleString());
     $(".total").html(userScore.toLocaleString());
+    database.ref("/playerData").push({
+        user_score: userScore
+    });
+    console.log("SC:" + userScore);// added by me
     console.log("question", questionCounter);
 
 }
