@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="assets/css/animate.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="parsley.min.js"></script>
     <!-- ============== -->
 </head>
 <body>
@@ -35,9 +36,9 @@
                     </ul>
                 </li>
             </ul>
-            <form class="navbar-form navbar-left" role="search">
+            <form data-validate="parsley" class="navbar-form navbar-left" role="search">
                 <div class="form-group">
-                    <input id="username" type="text" class="form-control" placeholder="USERNAME *">
+                    <input id="username" type="text" class="form-control" placeholder="USERNAME *" required>
                 </div>
                 <button type="submit" class="btn btn-danger sound" id="playBtn"><b>PLAY NOW</b></button>
             </form>
@@ -101,6 +102,7 @@
                 <img class="centered6" src="assets/images/logo2.png" width="180" alt="logo"/><br><br>
                 <a href="#" class="play-btn sound btn btn-danger centered5 btn-block"><span class="glyphicon glyphicon-play"></span> <b>PLAY</b></a>
                 <button type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b>59</b></button>
+                <button id="currPlayers" type="button" class="centered4 btn btn-danger btn-circle btn-lg"><b></b></button>// added by me
             </div>
             <div class="col-md-5 portfolio-item">
                 <div class="#">
