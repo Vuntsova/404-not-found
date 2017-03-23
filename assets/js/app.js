@@ -325,7 +325,11 @@ function countdown() {
         //reenable button
         $(".play-btn").prop('disabled', false);
         $(".play-btn").removeClass("disabled");
-
+        //
+         if(questionCounter > 4) {
+            console.log("GAME OVER!");
+            gameOver();
+        }
     }
 }
 
