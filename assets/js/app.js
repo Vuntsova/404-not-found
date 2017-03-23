@@ -3,7 +3,7 @@ var city = {
     lat: 1,
     lng: 1
 };
-
+var timer = 60;
 var citySearch;
 var locationArray = [];
 var videoId;
@@ -92,7 +92,10 @@ function playRandomVideo (searchTerm){
             console.log("response", videoId);
 
             getVideoDetails(videoId);
-            player.loadVideoById(videoId, 10, 60);
+            player.loadVideoById({
+                videoId: videoId,
+                endSeconds: 60
+            });
         })
 }
 
@@ -126,7 +129,7 @@ function loadPlayer() {
                     width: '640',
                     height: '390',
                     videoId: "NpEaa2P7qZI",
-                    playerVars: {'autoplay': 1, 'controls': 0, 'showinfo': 0, "end": 60},
+                    playerVars: {'autoplay': 0, 'controls': 0, 'showinfo': 0, "end": 60},
                     events: {
                         'onReady': function () {
                             console.log("player ready");
@@ -140,8 +143,15 @@ function loadPlayer() {
 
 function onPlayerStateChange(event) {
     if(event.data == YT.PlayerState.ENDED) {
-        player.playVideo();
+        //player.playVideo();
         $('#head').css({"background-color":"#aaa"});
+    }
+
+    if(event.data == YT.PlayerState.PLAYING) {
+        //initialize map
+        initMap();
+        //start timer
+        startTimer();
     }
 }
 
@@ -195,6 +205,8 @@ function initMap() {
         var distance = google.maps.geometry.spherical.computeDistanceBetween(latLngA, latLngB)/(1000 *  0.6214);
         //Update Score
         calculateScore(distance);
+        //Stop Timer
+        stopTimer();
         //Testing
         console.log('Distance between two points: ' + Math.round(distance) + ' miles');
         //Draws Line
@@ -256,7 +268,7 @@ function nextVid(){
     questionCounter++;
     //Plays next video / resets map
     playRandomVideo();
-    initMap();
+    //initMap();
     $(".play-btn").prop('disabled', true);
     $(".play-btn").addClass("disabled")
 }
@@ -283,7 +295,36 @@ function calculateScore(miles)
 
 }
 
+var timerId;
+
+function countdown() {
+    //Decrement timer
+    timer--;
+
+    //Update page
+    $(".centered4").text(timer);
+
+    if(timer < 1){
+        player.stopVideo();
+        calculateScore(26000);
+        stopTimer();
+    }
+}
+
+function startTimer(){
+    //Set Timer Value
+    timer = 60;
+
+    timerId = setInterval(countdown, 1000);
+}
+
+function stopTimer() {
+    clearInterval(timerId);
+}
+
 function gameOver() {
     //stop all video
     //display game over modal
+    //hide play button
+    $(".play-btn").hide();
 }
