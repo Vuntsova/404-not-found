@@ -251,3 +251,7 @@ th{
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
   opacity: 0.6;
 }
+.gameOver{
+  margin-top: 20%;
+  margin-left: 30%;
+}
