@@ -9,6 +9,10 @@ var locationArray = [];
 var videoId;
 var userScore = 0;
 
+var delayNum;
+var userNameVal;
+var sortPlayers;
+
 //City objects
 var shanghai = {
         lat: 31.230416,
@@ -57,6 +61,58 @@ var shanghai = {
         lat: 28.538336,
         lng: -81.379236
     };
+
+    //players object
+var players = [
+        {
+            name:'The Rock',
+            score: 120
+        },
+        {
+            name:'goku',
+            score: 100,
+        },
+        {
+            name:'Frosty The Snow Man',
+            score: 680
+        },
+        {
+            name:'Mr Hat',
+            score: 9999
+        },
+        {
+            name:'Elon Musk',
+            score: 2000,
+        },
+        {
+            name:'Anonoymous',
+            score: 8000
+        },
+        {
+            name:'Red Ranger',
+            score: 120
+        },
+        {
+            name:'Mark Zuckerburgh',
+            score: 100,
+        },
+        {
+            name:'Manbear Pig',
+            score: 300
+        },
+        {
+            name:'Eric cartman',
+            score: 400
+        }
+]
+//Capture value of userInput   
+$('#playBtn').on('click',function(){
+
+    userNameVal = $('#username').val();
+    console.log(userNameVal);
+
+    return false;
+   });
 
 locationArray = [shanghai, karachi, delhi, bucharest, lagos, tokyo, bogota, riyadh, wellington, sophia, orlando];
 
@@ -232,7 +288,7 @@ function initMap() {
             strokeWeight: 3,
             map: map
         });
-
+        //Content to be displayed in info-box
         var contentString = 'You were ' + Math.round(distance) + ' miles off'
         //Creates info-window
         var infowindow = new google.maps.InfoWindow({
@@ -251,6 +307,53 @@ function initMap() {
         $(".play-btn").prop('disabled', false);
         $(".play-btn").removeClass("disabled");
     });
+}
+//Leader Board
+function leaderBoard() {
+
+    delayNum = 0.0;
+    //removes first object section
+    sortPlayers = players.slice(0);
+    //sorts object by score from highiest to lowest 
+    sortPlayers.sort(function(a,b){
+        //returns highest to lowest
+        return b.score - a.score;
+        //leaderBoard(delayNum, sortPlayers);
+    });
+    
+    //Creates 10 tr tags    
+    for(var i=0; i < 10; i++){
+        var newTr = $('<tr>');
+            //Creates 3 th tags and 1 div tag
+            for(var j = 0; j < 3; j++){
+                var newTh = $('<th>');
+                var newDiv =  $('<div>');
+                //Gives div a class and style
+                newDiv.attr('class','animated zoomInDown');
+                newDiv.attr('style',"-webkit-animation-delay: " + 
+                             delayNum.toFixed(1) + 's;');
+                //adds player number to first row
+                if(j === 0){
+                    newDiv.text(i + 1);
+                }
+                //adds name to second row
+                else if(j === 1){
+                    newDiv.text(sortPlayers[i]['name']);
+                }
+                //adds score to third row
+                else if(j === 2){
+                    newDiv.text(sortPlayers[i]['score']);
+                 }
+                    //appends div to Th
+                    newDiv.appendTo(newTh);
+                    //appends the th with the div in it to tr
+                    newTh.appendTo(newTr);
+            }
+            //Adds 1 to delats number so every row animates one after another
+            delayNum = delayNum + 0.1;
+        //Adds the tr to the dom
+        $('.leaderBoard').append(newTr);
+    }
 }
 
 // When the play button is clicked..........
@@ -292,6 +395,8 @@ function gameInitialize()
     userScore = 0;
     loadPlayer();
     $(".total").html("0");
+    //Loads leaderBoard
+    leaderBoard();
 }
 
 function calculateScore(miles)
@@ -311,7 +416,7 @@ var timerId;
 
 function countdown() {
     //Decrement timer
-    timer--;
+    timer-- ;
 
     //Update page
     $(".centered4").text(timer);
@@ -325,7 +430,6 @@ function countdown() {
         //reenable button
         $(".play-btn").prop('disabled', false);
         $(".play-btn").removeClass("disabled");
-        //
          if(questionCounter > 4) {
             console.log("GAME OVER!");
             gameOver();
@@ -350,6 +454,18 @@ function gameOver() {
     setTimeout(function () {
         $("#mainPage").hide();
         $("#overPage").show();
+        $('.leaderBoard').empty();
+        //If users score is higher then the last score in the top 10 list..
+        if(userScore > sortPlayers[9]['score']){
+            //Push the score and username to the array of objects
+            players.push({name: userNameVal, score:userScore});
+            //Re-sorts the leaderboard from highest to lowest and adds it to the html
+            leaderBoard();
+        }
+        else{
+            //Adds the leaderboard to html
+            leaderBoard();
+        }
     }, 5000);
     //hide play button
     $(".play-btn").hide();
