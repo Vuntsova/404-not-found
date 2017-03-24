@@ -28,6 +28,8 @@ $(document).ready(function() {
         $("#startPage").hide();
         $('#mainPage').show();
         nextVid();
+        //Loads leaderBoard
+        leaderBoard();
         return false;
     });
 //==================================================

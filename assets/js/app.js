@@ -97,9 +97,11 @@ function playRandomVideo (searchTerm){
     var locationRadius = "&locationRadius=100mi";
     var embeddable="&videoEmbeddable=true";
     var type = "&type=video";
+    var safe = "&safeSearch=strict";
+    var results = "&maxResults=15";
     var key = "&key=AIzaSyCTNUZm5iZT1W_OICKJCKFqFWrLr3bZNjM";
 
-    var query = url+q+locationQ+locationRadius+embeddable+type+key;
+    var query = url+q+locationQ+locationRadius+embeddable+type+safe+results+key;
 
     $.ajax({
         url: query,
@@ -108,7 +110,12 @@ function playRandomVideo (searchTerm){
 
     //response
         .done(function (response) {
-            videoId = response.items[0].id.videoId;
+
+            randomNumber = Math.floor(Math.random() * 15);
+
+            console.log(response);
+
+            videoId = response.items[randomNumber].id.videoId;
             console.log("response", videoId);
 
             getVideoDetails(videoId);
@@ -286,7 +293,7 @@ function leaderBoard() {
     });
 
     //Creates 10 tr tags
-    for(var i=0; i < players.length || i < 10; i++){
+    for(var i=0; i < 10; i++){
         var newTr = $('<tr>');
             //Creates 3 th tags and 1 div tag
             for(var j = 0; j < 3; j++){
@@ -346,7 +353,8 @@ function nextVid(){
     //Iterates the question counter
     questionCounter++;
     //Plays next video / resets map
-    playRandomVideo("nature");
+    //playRandomVideo("nature drone");
+    playRandomVideo("festival");
     //initMap();
     $(".play-btn").prop('disabled', true);
     $(".play-btn").addClass("disabled")
@@ -359,8 +367,6 @@ function gameInitialize()
     userScore = 0;
     loadPlayer();
     $(".total").html("0");
-    //Loads leaderBoard
-    //leaderBoard();
 }
 
 function calculateScore(miles)
@@ -414,8 +420,6 @@ function stopTimer() {
 }
 
 function gameOver() {
-    //stop all video
-
     //push score to firebase
     pushtoFirebase();
 
@@ -424,6 +428,9 @@ function gameOver() {
         $("#mainPage").hide();
         $("#overPage").show();
         $('.leaderBoard').empty();
+        leaderBoard();
+        //stop all video
+        player.stopVideo();
     }, 5000);
     //hide play button
     $(".play-btn").hide();
