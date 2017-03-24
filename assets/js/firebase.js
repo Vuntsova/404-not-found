@@ -48,36 +48,35 @@ var initialScore= 0;
 var highScore = initialScore;
 var highUser = initialPlayer;
 
-// At the initial load, get a snapshot of the current data.
-database.ref("/playerData").on("value", function(snapshot) {
-
-    // If Firebase has a highPrice and highBidder stored (first case)
-    if (snapshot.child("highUser").exists() && snapshot.child("highScore").exists()) {
-
-        // Set the initial variables for highBidder equal to the stored values.
-        highUser = snapshot.val().highBidder;
-        highScore = parseInt(snapshot.val().highPrice);
-
-        // Print the initial data to the console.
-        console.log(snapshot.val().highUser);
-        console.log(snapshot.val().highScore);
-    }
-    //Keep the initial variables for highest user equal to the initial values
-    else {
-
-        // Code to update the leaderboard here?!
-        // $("").html(highUser);
-        // $("").html(highScore);
-        // Print the initial data to the console.
-        // console.log("Current Highest User");
-        // console.log(highUser);
-        // console.log(highScore);
-    }
-
-    // If any errors are experienced, log them to console.
-}, function(errorObject) {
-    console.log("The read failed: " + errorObject.code);
-});
+// // At the initial load, get a snapshot of the current data.
+// database.ref("/playerData").on("value", function(snapshot) {
+//
+//     // If Firebase has a highPrice and highBidder stored (first case)
+//     if (snapshot.child("highUser").exists() && snapshot.child("highScore").exists()) {
+//
+//         // Set the initial variables for highBidder equal to the stored values.
+//         highUser = snapshot.val().highBidder;
+//         highScore = parseInt(snapshot.val().highPrice);
+//
+//         // Print the initial data to the console.
+//         console.log(snapshot.val().highUser);
+//         console.log(snapshot.val().highScore);
+//     }
+//     //Keep the initial variables for highest user equal to the initial values
+//     else {
+//         // Code to update the leaderboard here?!
+//         // $("").html(highUser);
+//         // $("").html(highScore);
+//         // Print the initial data to the console.
+//         // console.log("Current Highest User");
+//         // console.log(highUser);
+//         // console.log(highScore);
+//     }
+//
+//     // If any errors are experienced, log them to console.
+// }, function(errorObject) {
+//     console.log("The read failed: " + errorObject.code);
+// });
 
 
 // Whenever user clicks the Play Now button

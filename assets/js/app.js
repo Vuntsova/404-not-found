@@ -346,7 +346,7 @@ function nextVid(){
     //Iterates the question counter
     questionCounter++;
     //Plays next video / resets map
-    playRandomVideo();
+    playRandomVideo("nature");
     //initMap();
     $(".play-btn").prop('disabled', true);
     $(".play-btn").addClass("disabled")
