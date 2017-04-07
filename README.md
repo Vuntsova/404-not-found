@@ -1,5 +1,5 @@
 # 404-not-found
-
+https://videogame404.herokuapp.com/
 
 //Firebase config
 <script src="https://www.gstatic.com/firebasejs/3.7.2/firebase.js"></script>
